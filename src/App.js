@@ -13,8 +13,15 @@ class App extends Component {
     }
   }
   onMessage = (message) => {
-    this.setState({game: JSON.parse(message).game})
-    console.log(message)
+    let parsedMessage = JSON.parse(message)
+    if (parsedMessage.command == 'start' || parsedMessage.command == 'restart') {
+      this.setState({game: parsedMessage.game})
+    } else if (parsedMessage.command == 'insert_throw') {
+
+    } else if (parsedMessage.command == 'edit_throw') {
+      
+    }
+    console.log(parsedMessage)
   }
   render() {
     return (
