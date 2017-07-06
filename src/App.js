@@ -9,6 +9,16 @@ const mapObject = (object, callback) => {
   return Object.keys(object).map( key => callback(key, object[key]) )
 }
 
+const allOutInit = {
+  25: [],
+  20: [],
+  19: [],
+  18: [],
+  17: [],
+  16: [],
+  15: []
+}
+
 const flattenRounds = (players, maxRound) => {
   let rounds = []
   for (let i = 0; i < maxRound; i++) {
@@ -33,15 +43,7 @@ class App extends Component {
     super()
     this.state = {
       players: [],
-      allOut: {
-        25: [],
-        20: [],
-        19: [],
-        18: [],
-        17: [],
-        16: [],
-        15: []
-      }
+      allOut: allOutInit
     }
   }
   onMessage = (message) => {
@@ -75,6 +77,7 @@ class App extends Component {
     })})
   }
   parseServerGameObject(game) {
+    this.setState({allOut: allOutInit})
     if (game.players == {}) {
       return []
     }
