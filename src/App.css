@@ -1,24 +1,73 @@
-.App {
-  text-align: center;
+ul,
+li {
+    list-style: none;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.label-1 {
+  background: rgba(92, 184, 92, 0.2);
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.label-2 {
+  background: rgba(92, 184, 92, 0.5);
 }
 
-.App-intro {
-  font-size: large;
+.label-3 {
+  background: rgba(92, 184, 92, 1);
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.score {
+    background-color: #4e5d6c;
+}
+
+.score .header {
+    background-color: #485563;
+    margin: 0;
+    padding: 15px;
+    text-align: center;
+    font-size: 30pt;
+}
+
+.score .sum {
+    font-size: 75pt;
+    text-align: center;
+}
+
+.score .table {
+}
+
+.table-container{
+    display: flex;
+    flex-direction: column-reverse;
+    background-color: #485563;
+}
+
+.score .table ul {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+}
+
+.score .table li {
+    font-size: 20pt;
+    flex-basis: 25%;
+    text-align: center;
+    box-sizing: border-box;
+    border-right: 10px solid #485563;
+}
+
+.big {
+    font-size: 35pt !important;
+}
+
+.label-out {
+    background-color: #2e2d4c;
+    text-decoration: line-through;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
