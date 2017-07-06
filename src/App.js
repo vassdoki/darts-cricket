@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import Websocket from 'react-websocket';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import Websocket from 'react-websocket'
+import './App.css'
 
 import Player from './Player.js'
 
@@ -48,17 +47,17 @@ class App extends Component {
   }
   onMessage = (message) => {
     let parsedMessage = JSON.parse(message)
-    if (parsedMessage.command == 'start' || parsedMessage.command == 'restart') {
+    if (parsedMessage.command === 'start' || parsedMessage.command === 'restart') {
       this.parseServerGameObject(parsedMessage.game)
-    } else if (parsedMessage.command == 'insert_throw') {
+    } else if (parsedMessage.command === 'insert_throw') {
       this.newThrow(parsedMessage.playerId, parsedMessage.throw)
-    } else if (parsedMessage.command == 'edit_throw') {
+    } else if (parsedMessage.command === 'edit_throw') {
       window.location.reload()
     }
   }
   newThrow = (currentPlayer, t) => {
     this.setState({players: this.state.players.map((player) => {
-      if (player.id == currentPlayer) {
+      if (player.id === currentPlayer) {
         player[t.score] += t.modifier
         if (player[t.score] >= 3) {
           if (!this.state.allOut[t.score].includes(player.id)) {
@@ -78,7 +77,7 @@ class App extends Component {
   }
   parseServerGameObject(game) {
     this.setState({allOut: allOutInit})
-    if (game.players == {}) {
+    if (game.players === {}) {
       return []
     }
     let maxRound = 0
@@ -114,16 +113,16 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="container">
-        <div className="row title"><h1>Cricket Game</h1></div>
+      <div>
+        <div className="title"><h1>Cricket Game</h1></div>
         <div className="row">
           { this.state.players.map((player) => <Player {...player} allOut={this.filterAllOut()} key={player.id} />) }
         </div>
-        <Websocket url='ws://localhost:8080/ws'
+        <Websocket url={'ws://'+window.location.hostname+':8080/ws'}
               onMessage={this.onMessage}/>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 const keyList = [15, 16, 17, 18, 19, 20, 25]
 
@@ -9,9 +9,9 @@ class Player extends Component {
     return `label-${label}`
   }
   render() {
-    const {name, score} = this.props;
+    const {name, score} = this.props
     return (
-      <div className="col-md-6">
+      <div className="player">
         <div className="score">
           <div className="header">
             {name}
@@ -21,11 +21,11 @@ class Player extends Component {
           </div>
           <div className="table-container">
             {keyList.map((key) => {
-              return (<div className="table">
+              return (<div className="table" key={key}>
                 <ul>
                   <li className="big">{key}</li>
                   {[...Array(this.props[key]).keys()].map((k)=>(
-                    <li className={this.getStyle(key)}>
+                    <li className={this.getStyle(key)} key={k}>
                       <span>x</span>
                     </li>
                   ))}
@@ -36,8 +36,8 @@ class Player extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Player;
+export default Player

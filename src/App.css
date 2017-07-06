@@ -71,3 +71,12 @@ li {
     align-items: center;
     justify-content: center;
 }
+
+.row {
+  display: flex;
+}
+
+.player {
+  flex: 1;
+  margin-left: 10px;
+}
