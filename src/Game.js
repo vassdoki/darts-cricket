@@ -37,6 +37,7 @@ const Game = () => {
   const game = {}
   const players = []
 
+  let subType = 'simple'
   let allOut = {}
   let currentRound = {throwed: []}
 
@@ -44,10 +45,16 @@ const Game = () => {
     return allOut[score].length === players.length
   }
 
-  const doScore = (playerId, score) => {
+  const doScore = (playerId, score, modifier) => {
     players.forEach((player, index) => {
-      if (player.id === playerId) {
-        players[index].score += score * (player[score]-3)
+      if (subType === 'cc') {
+        if (player.id !== playerId && !allOut[score].includes(player.id)) {
+          players[index].score += score * modifier
+        }
+      } else {
+        if (player.id === playerId) {
+          players[index].score += score * modifier
+        }
       }
     })
   }
@@ -62,7 +69,7 @@ const Game = () => {
           }
           if (player[t.score] > 3) {
             if (!isAllOut(t.score)) {
-              doScore(currentPlayerId, t.score)
+              doScore(currentPlayerId, t.score, player[score]-3)
             }
             player[t.score] = 3
           }
@@ -97,6 +104,7 @@ const Game = () => {
       return
     }
     allOut = allOutInit
+    subType = game.subType
     players.length = 0
     let maxRound = 0
     mapObject(game.players, (playerKey, player) => {
