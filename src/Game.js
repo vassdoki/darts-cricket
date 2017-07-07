@@ -69,7 +69,7 @@ const Game = () => {
           }
           if (player[t.score] > 3) {
             if (!isAllOut(t.score)) {
-              doScore(currentPlayerId, t.score, player[score]-3)
+              doScore(currentPlayerId, t.score, player[t.score]-3)
             }
             player[t.score] = 3
           }
