@@ -38,6 +38,7 @@ const Game = () => {
   const players = []
 
   let allOut = {}
+  let currentRound = {throwed: []}
 
   const isAllOut = (score) => {
     return allOut[score].length === players.length
@@ -66,11 +67,24 @@ const Game = () => {
             player[t.score] = 3
           }
         }
+        if (currentRound.throwed.length === 3) {
+          currentRound['throwed'] = []
+        }
+        currentRound.throwed.push(t)
+        if (currentRound.throwed.length === 3) {
+          currentRound['playerId'] = players[(index+1) % players.length].id
+        }
       }
       return player
     })
-  }
 
+  }
+  game.getCurrentRound = () => {
+    return {
+      playerId: currentRound.playerId,
+      throwed: currentRound.throwed.map(t => t)
+    }
+  }
   game.getPlayers = () => copyPlayers(players)
   game.getAllOut = () => {
     return Object.keys(allOut).filter(e => allOut[e].length === players.length)
@@ -79,10 +93,11 @@ const Game = () => {
 
   game.newThrow = newThrow
   game.parseServerGameObject = (game) => {
-    allOut = allOutInit
-    if (game.players === {}) {
+    if (game.players === {} || game.status === 0) {
       return
     }
+    allOut = allOutInit
+    players.length = 0
     let maxRound = 0
     mapObject(game.players, (playerKey, player) => {
       if (maxRound < Object.keys(player.rounds).length) {
@@ -101,7 +116,8 @@ const Game = () => {
         15: 0
       })
     })
-
+    console.log(game)
+    currentRound['playerId'] = players[0].id
     let rounds = flattenRounds(game.players, maxRound)
     rounds.forEach((round)=> {
       mapObject(round.throws, (tKey, t) => {

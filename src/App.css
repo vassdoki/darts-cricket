@@ -25,6 +25,7 @@ li {
     padding: 15px;
     text-align: center;
     font-size: 30pt;
+    border: solid 10px #485563;
 }
 
 .score .sum {
@@ -78,5 +79,30 @@ li {
 
 .player {
   flex: 1;
+  margin-left: 10px;
+}
+
+.current {
+  border-color: rgba(92, 184, 92, 1) !important;
+}
+
+.round {
+  width: 100%;
+  background: #485563;
+  margin-bottom: 10px;
+}
+
+.round ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.round ul li {
+  flex: 1;
+  padding: 10px;
+  font-size: 40px;
+  text-align: center;
   margin-left: 10px;
 }

@@ -9,11 +9,11 @@ class Player extends Component {
     return `label-${label}`
   }
   render() {
-    const {name, score} = this.props
+    const {name, score, current} = this.props
     return (
       <div className="player">
         <div className="score">
-          <div className="header">
+          <div className={`header ${current?'current':''}`}>
             {name}
           </div>
           <div className="sum">
