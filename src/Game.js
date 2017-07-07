@@ -105,6 +105,7 @@ const Game = () => {
     }
     allOut = allOutInit
     subType = game.subType
+    currentRound = {throwed: []}
     players.length = 0
     let maxRound = 0
     mapObject(game.players, (playerKey, player) => {
