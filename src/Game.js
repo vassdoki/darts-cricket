@@ -124,7 +124,6 @@ const Game = () => {
         15: 0
       })
     })
-    console.log(game)
     currentRound['playerId'] = players[0].id
     let rounds = flattenRounds(game.players, maxRound)
     rounds.forEach((round)=> {
