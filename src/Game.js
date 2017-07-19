@@ -104,7 +104,11 @@ const Game = () => {
       return
     }
     allOut = allOutInit
-    subType = game.subType
+    if (game.subType.includes("cutThroat")) {
+      subType = "cc";
+    } else {
+      subType = "simple";
+    }
     currentRound = {throwed: []}
     players.length = 0
     let maxRound = 0

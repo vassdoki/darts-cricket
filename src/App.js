@@ -22,8 +22,16 @@ class App extends Component {
       return
     }
     let parsedMessage = JSON.parse(message)
-    if (['start', 'restart', 'started'].includes(parsedMessage.command)) {
+
+    if (['start', 'started'].includes(parsedMessage.command)) {
+        if (parsedMessage.game.name === "cricket") {
+            game.parseServerGameObject(parsedMessage.game)
+        } else {
+            document.location.href="/game/scoreboard";
+        }
       game.parseServerGameObject(parsedMessage.game)
+    } else if (parsedMessage.command === 'restart') {
+      document.location.href="/game/scoreboard";
     } else if (parsedMessage.command === 'insert_throw') {
       game.newThrow(parsedMessage.playerId, parsedMessage.throw)
     } else if (parsedMessage.command === 'edit_throw') {
