@@ -29,11 +29,12 @@ li {
 }
 
 .score .sum {
-    font-size: 75pt;
+    font-size: 50pt;
     text-align: center;
 }
 
 .score .table {
+    margin: 0;
 }
 
 .table-container{
